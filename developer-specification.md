@@ -26,8 +26,13 @@ The RWA Capital Cabinet System is a comprehensive platform for real estate token
 - **Internal Audit System** - Project review and approval workflow
 
 ### Live Prototypes
+**GitHub Pages:**
 - **Registration & Login:** [View Prototype](https://danielnovichkov.github.io/rwa-cabinet-prototypes/registration-login-prototype.html)
 - **Project Creation:** [View Prototype](https://danielnovichkov.github.io/rwa-cabinet-prototypes/project-creation-prototype.html)
+
+**Direct Links (always work):**
+- **Registration & Login:** [View Prototype](https://raw.githack.com/danielnovichkov/rwa-cabinet-prototypes/main/registration-login-prototype.html)
+- **Project Creation:** [View Prototype](https://raw.githack.com/danielnovichkov/rwa-cabinet-prototypes/main/project-creation-prototype.html)
 
 ---
 
