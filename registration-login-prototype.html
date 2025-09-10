@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWA Capital - Registration & Login Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border: 2px solid #ccc;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 600px;
+            display: flex;
+        }
+
+        .left-panel {
+            background: #e0e0e0;
+            border-right: 2px solid #ccc;
+            padding: 30px;
+            flex: 1;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            list-style: none;
+        }
+
+        .features li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .user-type-selector {
+            display: flex;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .user-type-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: #f0f0f0;
+            cursor: pointer;
+            border-right: 1px solid #ccc;
+        }
+
+        .user-type-btn:last-child {
+            border-right: none;
+        }
+
+        .user-type-btn.active {
+            background: #ddd;
+            font-weight: bold;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .form-subtitle {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            background: white;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-label {
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .checkbox-label a {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+        }
+
+        .form-switch a {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .legal-info {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .required {
+            color: red;
+        }
+
+        .prototype-notice {
+            background: #ffffcc;
+            border: 2px solid #ffcc00;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="prototype-notice">
+        PROTOTYPE - NOT FOR PRODUCTION USE
+    </div>
+    
+    <div class="container">
+        <!-- Left panel with platform information -->
+        <div class="left-panel">
+            <div class="logo">RWA Capital</div>
+            <div class="tagline">Next-generation real estate tokenization</div>
+            <ul class="features">
+                <li>Secure asset tokenization</li>
+                <li>International compliance standards</li>
+                <li>Transparency and liquidity</li>
+                <li>Professional support</li>
+                <li>Blockchain ecosystem integration</li>
+            </ul>
+        </div>
+
+        <!-- Right panel with forms -->
+        <div class="right-panel">
+            <!-- User type selector -->
+            <div class="user-type-selector">
+                <button class="user-type-btn active" onclick="switchUserType('retail')">
+                    Retail Investors
+                </button>
+                <button class="user-type-btn" onclick="switchUserType('corporate')">
+                    Corporate Clients
+                </button>
+            </div>
+
+            <!-- Forms for retail investors -->
+            <div id="retail-forms" class="form-container active">
+                <!-- Retail investor registration -->
+                <div id="retail-register" class="form-section active">
+                    <h2 class="form-title">Investor Registration</h2>
+                    <p class="form-subtitle">Create an account to invest in tokenized real estate</p>
+                    
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">First Name <span class="required">*</span></label>
+                                <input type="text" class="form-input" placeholder="Enter your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name <span class="required">*</span></label>
+                                <input type="text" class="form-input" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email <span class="required">*</span></label>
+                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Phone <span class="required">*</span></label>
+                            <input type="tel" class="form-input" placeholder="+1 (555) 123-4567" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Country <span class="required">*</span></label>
+                            <select class="form-select" required>
+                                <option value="">Select country</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="DE">Germany</option>
+                                <option value="FR">France</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password <span class="required">*</span></label>
+                            <input type="password" class="form-input" placeholder="Minimum 8 characters" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Confirm Password <span class="required">*</span></label>
+                            <input type="password" class="form-input" placeholder="Repeat password" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" id="terms-retail" required>
+                            <label for="terms-retail" class="checkbox-label">
+                                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" id="newsletter-retail">
+                            <label for="newsletter-retail" class="checkbox-label">
+                                Subscribe to platform news and updates
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Create Account</button>
+                    </form>
+
+                    <div class="form-switch">
+                        Already have an account? <a href="#" onclick="switchForm('retail', 'login')">Sign In</a>
+                    </div>
+                </div>
+
+                <!-- Retail investor login -->
+                <div id="retail-login" class="form-section">
+                    <h2 class="form-title">Sign In</h2>
+                    <p class="form-subtitle">Sign in to your investor account</p>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" placeholder="Enter password" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" id="remember-retail">
+                            <label for="remember-retail" class="checkbox-label">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Sign In</button>
+                    </form>
+
+                    <div class="form-switch">
+                        Don't have an account? <a href="#" onclick="switchForm('retail', 'register')">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forms for corporate clients -->
+            <div id="corporate-forms" class="form-container">
+                <!-- Corporate client registration -->
+                <div id="corporate-register" class="form-section active">
+                    <h2 class="form-title">Corporate Registration</h2>
+                    <p class="form-subtitle">Submit an application for asset tokenization</p>
+                    
+                    <div class="legal-info">
+                        <strong>For corporate clients:</strong> After registration, our manager will contact you to discuss the details of your asset tokenization and conduct KYC procedures.
+                    </div>
+
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">Company Name <span class="required">*</span></label>
+                            <input type="text" class="form-input" placeholder="ABC Corporation Ltd." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tax ID/Registration Number <span class="required">*</span></label>
+                            <input type="text" class="form-input" placeholder="1234567890" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Legal Address <span class="required">*</span></label>
+                            <input type="text" class="form-input" placeholder="123 Business St, City, State 12345" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Contact Person <span class="required">*</span></label>
+                                <input type="text" class="form-input" placeholder="John Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Position <span class="required">*</span></label>
+                                <input type="text" class="form-input" placeholder="CEO" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email <span class="required">*</span></label>
+                            <input type="email" class="form-input" placeholder="contact@company.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Phone <span class="required">*</span></label>
+                            <input type="tel" class="form-input" placeholder="+1 (555) 123-4567" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Asset Type for Tokenization <span class="required">*</span></label>
+                            <select class="form-select" required>
+                                <option value="">Select asset type</option>
+                                <option value="commercial">Commercial Real Estate</option>
+                                <option value="residential">Residential Real Estate</option>
+                                <option value="industrial">Industrial Real Estate</option>
+                                <option value="land">Land</option>
+                                <option value="mixed">Mixed Assets</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Approximate Asset Value (USD)</label>
+                            <select class="form-select">
+                                <option value="">Select range</option>
+                                <option value="1-5M">$1M - $5M</option>
+                                <option value="5-10M">$5M - $10M</option>
+                                <option value="10-50M">$10M - $50M</option>
+                                <option value="50M+">$50M+</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password <span class="required">*</span></label>
+                            <input type="password" class="form-input" placeholder="Minimum 8 characters" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Confirm Password <span class="required">*</span></label>
+                            <input type="password" class="form-input" placeholder="Repeat password" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" id="terms-corporate" required>
+                            <label for="terms-corporate" class="checkbox-label">
+                                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" id="kyc-corporate" required>
+                            <label for="kyc-corporate" class="checkbox-label">
+                                I confirm readiness to undergo KYC/AML procedures
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit Application</button>
+                    </form>
+
+                    <div class="form-switch">
+                        Already have an account? <a href="#" onclick="switchForm('corporate', 'login')">Sign In</a>
+                    </div>
+                </div>
+
+                <!-- Corporate client login -->
+                <div id="corporate-login" class="form-section">
+                    <h2 class="form-title">Sign In</h2>
+                    <p class="form-subtitle">Sign in to your corporate account</p>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="contact@company.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" placeholder="Enter password" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" id="remember-corporate">
+                            <label for="remember-corporate" class="checkbox-label">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Sign In</button>
+                    </form>
+
+                    <div class="form-switch">
+                        Don't have an account? <a href="#" onclick="switchForm('corporate', 'register')">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchUserType(type) {
+            // Update active buttons
+            document.querySelectorAll('.user-type-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Switch form containers
+            document.querySelectorAll('.form-container').forEach(container => container.classList.remove('active'));
+            document.getElementById(type + '-forms').classList.add('active');
+
+            // Reset to registration when switching user type
+            if (type === 'retail') {
+                switchForm('retail', 'register');
+            } else {
+                switchForm('corporate', 'register');
+            }
+        }
+
+        function switchForm(userType, formType) {
+            // Hide all form sections for this user type
+            const container = document.getElementById(userType + '-forms');
+            container.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
+            
+            // Show the required section
+            document.getElementById(userType + '-' + formType).classList.add('active');
+        }
+
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Form submitted! (This is a prototype)');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

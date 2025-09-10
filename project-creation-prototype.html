@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWA Capital - Create Tokenization Project Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .prototype-notice {
+            background: #ffffcc;
+            border: 2px solid #ffcc00;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .container {
+            background: white;
+            border: 2px solid #ccc;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            background: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            background: white;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            height: 100px;
+            resize: vertical;
+        }
+
+        .required {
+            color: red;
+        }
+
+        .file-upload {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .file-upload input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        .file-list {
+            margin-top: 10px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            background: #f9f9f9;
+        }
+
+        .file-name {
+            font-size: 12px;
+        }
+
+        .remove-file {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 2px 6px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+
+        .submit-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .save-draft-btn {
+            background: #666;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .info-box {
+            background: #e8f4fd;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            height: 20px;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            background: #4caf50;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="prototype-notice">
+        PROTOTYPE - NOT FOR PRODUCTION USE
+    </div>
+    
+    <div class="container">
+        <h1 class="page-title">Create Real Estate Tokenization Project</h1>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="info-box">
+            <strong>Project Creation Process:</strong> Complete all required sections to submit your real estate tokenization project for internal audit. All fields marked with (*) are mandatory.
+        </div>
+
+        <form id="projectForm">
+            <!-- Project Basic Information -->
+            <div class="form-section">
+                <div class="section-title">1. Project Basic Information</div>
+                
+                <div class="form-group">
+                    <label class="form-label">Project Name <span class="required">*</span></label>
+                    <input type="text" class="form-input" placeholder="e.g., Manhattan Office Tower Tokenization" required>
+                    <div class="help-text">Choose a descriptive name for your tokenization project</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Project Description <span class="required">*</span></label>
+                    <textarea class="form-textarea" placeholder="Provide a detailed description of the real estate asset, its location, current use, and investment potential..." required></textarea>
+                    <div class="help-text">Include key details about the property, its market position, and investment thesis</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Property Type <span class="required">*</span></label>
+                        <select class="form-select" required>
+                            <option value="">Select property type</option>
+                            <option value="residential">Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="office">Office</option>
+                            <option value="retail">Retail</option>
+                            <option value="industrial">Industrial</option>
+                            <option value="hospitality">Hospitality</option>
+                            <option value="mixed-use">Mixed-Use</option>
+                            <option value="land">Land</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Property Status <span class="required">*</span></label>
+                        <select class="form-select" required>
+                            <option value="">Select status</option>
+                            <option value="existing">Existing Property</option>
+                            <option value="development">Under Development</option>
+                            <option value="planned">Planned Development</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Details -->
+            <div class="form-section">
+                <div class="section-title">2. Property Details</div>
+                
+                <div class="form-group">
+                    <label class="form-label">Property Address <span class="required">*</span></label>
+                    <input type="text" class="form-input" placeholder="Full street address, city, state, postal code, country" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Total Area (sq ft) <span class="required">*</span></label>
+                        <input type="number" class="form-input" placeholder="e.g., 50000" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Number of Units/Floors</label>
+                        <input type="text" class="form-input" placeholder="e.g., 25 floors, 200 units">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Year Built</label>
+                        <input type="number" class="form-input" placeholder="e.g., 2010">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Renovation Year</label>
+                        <input type="number" class="form-input" placeholder="e.g., 2020">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Current Occupancy Rate (%)</label>
+                    <input type="number" class="form-input" placeholder="e.g., 85" min="0" max="100">
+                </div>
+            </div>
+
+            <!-- Financial Information -->
+            <div class="form-section">
+                <div class="section-title">3. Financial Information</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Property Valuation (USD) <span class="required">*</span></label>
+                        <input type="number" class="form-input" placeholder="e.g., 50000000" required>
+                        <div class="help-text">Current market value of the property</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Valuation Date <span class="required">*</span></label>
+                        <input type="date" class="form-input" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Annual Rental Income (USD)</label>
+                        <input type="number" class="form-input" placeholder="e.g., 3000000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Annual Operating Expenses (USD)</label>
+                        <input type="number" class="form-input" placeholder="e.g., 800000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Debt Information</label>
+                    <textarea class="form-textarea" placeholder="Describe any existing mortgages, loans, or liens on the property. Include amounts, interest rates, and maturity dates."></textarea>
+                </div>
+            </div>
+
+            <!-- Tokenization Parameters -->
+            <div class="form-section">
+                <div class="section-title">4. Tokenization Parameters</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Tokenization Percentage <span class="required">*</span></label>
+                        <input type="number" class="form-input" placeholder="e.g., 25" min="1" max="100" required>
+                        <div class="help-text">Percentage of property to be tokenized (1-100%)</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total Number of Tokens <span class="required">*</span></label>
+                        <input type="number" class="form-input" placeholder="e.g., 1000000" required>
+                        <div class="help-text">Total supply of tokens to be issued</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Token Price (USD) <span class="required">*</span></label>
+                        <input type="number" class="form-input" placeholder="e.g., 12.50" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Minimum Investment (USD) <span class="required">*</span></label>
+                        <input type="number" class="form-input" placeholder="e.g., 1000" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Investment Terms</label>
+                    <textarea class="form-textarea" placeholder="Describe investment terms, lock-up periods, dividend distribution schedule, exit strategies, etc."></textarea>
+                </div>
+            </div>
+
+            <!-- Legal & Compliance -->
+            <div class="form-section">
+                <div class="section-title">5. Legal & Compliance Information</div>
+                
+                <div class="form-group">
+                    <label class="form-label">Property Ownership Structure <span class="required">*</span></label>
+                    <select class="form-select" required>
+                        <option value="">Select ownership structure</option>
+                        <option value="individual">Individual Ownership</option>
+                        <option value="corporation">Corporation</option>
+                        <option value="llc">Limited Liability Company (LLC)</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="trust">Trust</option>
+                        <option value="reit">Real Estate Investment Trust (REIT)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Regulatory Jurisdiction <span class="required">*</span></label>
+                    <input type="text" class="form-input" placeholder="e.g., UAE, Dubai" required>
+                    <div class="help-text">Primary jurisdiction where the property is located and regulated</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Compliance Notes</label>
+                    <textarea class="form-textarea" placeholder="Any specific regulatory considerations, compliance requirements, or legal restrictions that apply to this tokenization project."></textarea>
+                </div>
+            </div>
+
+            <!-- Document Upload -->
+            <div class="form-section">
+                <div class="section-title">6. Required Documents</div>
+                
+                <div class="info-box">
+                    <strong>Document Requirements:</strong> Upload all required documents for internal audit. Supported formats: PDF, JPG, PNG. Maximum file size: 10MB per file.
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Property Title Deed <span class="required">*</span></label>
+                    <div class="file-upload">
+                        <input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                        <div>Click to upload or drag and drop files here</div>
+                    </div>
+                    <div class="file-list" id="titleDeedFiles"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Property Valuation Report <span class="required">*</span></label>
+                    <div class="file-upload">
+                        <input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                        <div>Click to upload or drag and drop files here</div>
+                    </div>
+                    <div class="file-list" id="valuationFiles"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Property Insurance Documents</label>
+                    <div class="file-upload">
+                        <input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                        <div>Click to upload or drag and drop files here</div>
+                    </div>
+                    <div class="file-list" id="insuranceFiles"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Financial Statements (Last 3 Years)</label>
+                    <div class="file-upload">
+                        <input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                        <div>Click to upload or drag and drop files here</div>
+                    </div>
+                    <div class="file-list" id="financialFiles"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Property Photos & Floor Plans</label>
+                    <div class="file-upload">
+                        <input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                        <div>Click to upload or drag and drop files here</div>
+                    </div>
+                    <div class="file-list" id="photoFiles"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Legal Documents (Contracts, Leases, etc.)</label>
+                    <div class="file-upload">
+                        <input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                        <div>Click to upload or drag and drop files here</div>
+                    </div>
+                    <div class="file-list" id="legalFiles"></div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+                <div class="section-title">7. Contact Information</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Primary Contact Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" placeholder="Full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Title/Position <span class="required">*</span></label>
+                        <input type="text" class="form-input" placeholder="e.g., CEO, Property Manager" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Email <span class="required">*</span></label>
+                        <input type="email" class="form-input" placeholder="contact@company.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone <span class="required">*</span></label>
+                        <input type="tel" class="form-input" placeholder="+1 (555) 123-4567" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Company/Organization</label>
+                    <input type="text" class="form-input" placeholder="Company name">
+                </div>
+            </div>
+
+            <!-- Submit Section -->
+            <div class="submit-section">
+                <div class="info-box">
+                    <strong>Submission Process:</strong> After submitting, your project will be reviewed by our internal audit team. You will receive a confirmation email and updates on the review process within 2-3 business days.
+                </div>
+                
+                <button type="button" class="save-draft-btn" onclick="saveDraft()">Save as Draft</button>
+                <button type="submit" class="submit-btn">Submit for Internal Audit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Progress tracking
+        function updateProgress() {
+            const form = document.getElementById('projectForm');
+            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+            const filled = Array.from(inputs).filter(input => input.value.trim() !== '').length;
+            const progress = (filled / inputs.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // File upload handling
+        function setupFileUpload(input, containerId) {
+            input.addEventListener('change', function(e) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = '';
+                
+                Array.from(e.target.files).forEach(file => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <span class="file-name">${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                        <button type="button" class="remove-file" onclick="removeFile(this)">Remove</button>
+                    `;
+                    container.appendChild(fileItem);
+                });
+            });
+        }
+
+        function removeFile(button) {
+            button.parentElement.remove();
+        }
+
+        // Initialize file uploads
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            const containerIds = ['titleDeedFiles', 'valuationFiles', 'insuranceFiles', 'financialFiles', 'photoFiles', 'legalFiles'];
+            
+            fileInputs.forEach((input, index) => {
+                if (containerIds[index]) {
+                    setupFileUpload(input, containerIds[index]);
+                }
+            });
+
+            // Progress tracking
+            const form = document.getElementById('projectForm');
+            form.addEventListener('input', updateProgress);
+            form.addEventListener('change', updateProgress);
+            
+            // Initial progress update
+            updateProgress();
+        });
+
+        // Form submission
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Project submitted for internal audit! (This is a prototype)');
+        });
+
+        function saveDraft() {
+            alert('Draft saved! (This is a prototype)');
+        }
+    </script>
+</body>
+</html>
