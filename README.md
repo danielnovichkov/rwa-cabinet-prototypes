@@ -61,11 +61,11 @@ A complete project creation workflow for real estate tokenization projects:
 
 ## 🔗 Live Prototypes
 
-**GitHub Pages (if enabled):**
+**GitHub Pages (Recommended):**
 - [Registration & Login Prototype](https://danielnovichkov.github.io/rwa-cabinet-prototypes/registration-login-prototype.html)
 - [Project Creation Prototype](https://danielnovichkov.github.io/rwa-cabinet-prototypes/project-creation-prototype.html)
 
-**Direct GitHub Links (always work):**
+**Alternative Links:**
 - [Registration & Login Prototype](https://raw.githack.com/danielnovichkov/rwa-cabinet-prototypes/main/registration-login-prototype.html)
 - [Project Creation Prototype](https://raw.githack.com/danielnovichkov/rwa-cabinet-prototypes/main/project-creation-prototype.html)
 
