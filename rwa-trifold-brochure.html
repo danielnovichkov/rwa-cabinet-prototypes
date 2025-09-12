@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWA.CAPITAL - Тройная брошюра</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .brochure-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .trifold {
+            display: flex;
+            min-height: 800px;
+        }
+
+        .column {
+            flex: 1;
+            padding: 40px 30px;
+            border-right: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .column:last-child {
+            border-right: none;
+        }
+
+        /* Left Column - Outer Side */
+        .left-column {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .left-column h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .left-column .tagline {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .left-column .platform-desc {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .left-column .location {
+            font-size: 1.1em;
+            margin: 15px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .benefit-item {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .benefit-item .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .contact-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .cta-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        /* Center Column - Inner Side */
+        .center-column {
+            background: #f8f9fa;
+        }
+
+        .center-column h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+        }
+
+        .company-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-item {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mission-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .mission-box blockquote {
+            font-size: 1.1em;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .unique-offering {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #2a5298;
+        }
+
+        .advantages-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .advantages-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #e8f4fd;
+            border-radius: 5px;
+            border-left: 3px solid #2a5298;
+        }
+
+        .stats-table {
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 25px 0;
+        }
+
+        .stats-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .stats-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stats-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Right Column - Back Side */
+        .right-column {
+            background: #f8f9fa;
+        }
+
+        .right-column h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+        }
+
+        .services-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .services-list li {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .services-list .service-title {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .client-types-table {
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 25px 0;
+        }
+
+        .client-types-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .client-types-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .team-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .team-leader {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .team-leader h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .team-leader .title {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .team-leader .experience {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .principles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .principle {
+            background: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #2a5298;
+        }
+
+        .long-term-goal {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .long-term-goal blockquote {
+            font-size: 1.1em;
+            font-style: italic;
+            color: #8b4513;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .brochure-container {
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .trifold {
+                min-height: auto;
+            }
+            
+            .column {
+                padding: 20px 15px;
+                border-right: 1px solid #ccc;
+            }
+            
+            .left-column {
+                background: #1e3c72 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .trifold {
+                flex-direction: column;
+            }
+            
+            .column {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            .column:last-child {
+                border-bottom: none;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .principles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brochure-container">
+        <div class="trifold">
+            <!-- ЛЕВАЯ КОЛОНКА (Наружная сторона) -->
+            <div class="column left-column">
+                <h1>🏢 RWA.CAPITAL</h1>
+                <div class="tagline">THE FUTURE OF REAL ESTATE IS HERE</div>
+                
+                <div class="platform-desc">
+                    <div style="font-size: 1.3em; margin-bottom: 15px;">🚀 AI-платформа токенизации недвижимости</div>
+                    <div class="location">📍 DIFC | Глобальный доступ</div>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="icon">💰</div>
+                        <div>От $1,000<br>вместо $1M</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">🌐</div>
+                        <div>Глобальная<br>диверсификация</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="icon">⚡</div>
+                        <div>Высокая<br>ликвидность</div>
+                    </div>
+                </div>
+
+                <div class="contact-section">
+                    <h3 style="margin-bottom: 20px;">📞 КОНТАКТЫ</h3>
+                    <div class="contact-item">
+                        <span>🌐</span>
+                        <a href="https://rwa.capital" target="_blank">rwa.capital</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <a href="https://t.me/rwacapital_official" target="_blank">@rwacapital_official</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:info@rwa.capital">info@rwa.capital</a>
+                    </div>
+                    <div style="margin-top: 20px; font-style: italic;">
+                        📧 Приветствуем идеи, вопросы и предложения!
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h3>🎯 Готовы к будущему инвестиций?</h3>
+                    <p style="margin-top: 10px; font-weight: bold;">Присоединяйтесь к революции недвижимости!</p>
+                </div>
+            </div>
+
+            <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА (Внутренняя сторона) -->
+            <div class="column center-column">
+                <h2>ℹ️ О КОМПАНИИ</h2>
+                <div class="company-info">
+                    <div class="info-item">
+                        <span>📅</span>
+                        <span><strong>Дата основания:</strong> 30 ноября 2022</span>
+                    </div>
+                    <div class="info-item">
+                        <span>🏛️</span>
+                        <span><strong>Регистрация:</strong> Свободная зона Дубаи, в процессе DIFC/DFSA</span>
+                    </div>
+                    <div class="info-item">
+                        <span>👥</span>
+                        <span><strong>Команда:</strong> 5 full-time, 80% с опытом в крипто, 8 языков</span>
+                    </div>
+                </div>
+
+                <h2>🎯 МИССИЯ</h2>
+                <div class="mission-box">
+                    <blockquote>
+                        Демократизация инвестиций в недвижимость через блокчейн и искусственный интеллект.
+                    </blockquote>
+                    <p>Прозрачная, эффективная экосистема для глобальных инвесторов.</p>
+                </div>
+
+                <h2>💎 УНИКАЛЬНОЕ ПРЕДЛОЖЕНИЕ</h2>
+                <div class="unique-offering">
+                    <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Инновационная платформа</strong> для покупки долей в коммерческой недвижимости через цифровые токены.</p>
+                    
+                    <h3 style="color: #1e3c72; margin: 20px 0 15px 0;">🔥 Ключевые преимущества:</h3>
+                    <ul class="advantages-list">
+                        <li>✅ <strong>Ликвидность</strong> — торгуйте 24/7</li>
+                        <li>✅ <strong>Прозрачность</strong> — блокчейн технологии</li>
+                        <li>✅ <strong>Глобальная доступность</strong> — инвестируйте из любой точки мира</li>
+                    </ul>
+                </div>
+
+                <h2>📊 СТАТИСТИКА 2025</h2>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Показатель</th>
+                            <th>Значение</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>👥 Активные инвесторы</td>
+                            <td><strong>2,500+</strong></td>
+                        </tr>
+                        <tr>
+                            <td>💰 Токенизированные активы</td>
+                            <td><strong>$50M+</strong></td>
+                        </tr>
+                        <tr>
+                            <td>🏢 Количество объектов</td>
+                            <td><strong>15+</strong></td>
+                        </tr>
+                        <tr>
+                            <td>📈 Средняя доходность</td>
+                            <td><strong>12%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА (Задняя сторона) -->
+            <div class="column right-column">
+                <h2>🔧 КАК ЭТО РАБОТАЕТ</h2>
+                <h3 style="color: #1e3c72; margin: 20px 0 15px 0;">🏗️ Наши услуги:</h3>
+                <ul class="services-list">
+                    <li>
+                        <div class="service-title">🔹 Токенизация недвижимости</div>
+                        <div>Преобразование активов в цифровые токены</div>
+                    </li>
+                    <li>
+                        <div class="service-title">🔹 AI-аналитика</div>
+                        <div>Оценка и анализ доходности объектов</div>
+                    </li>
+                    <li>
+                        <div class="service-title">🔹 Международная платформа</div>
+                        <div>Глобальный доступ к инвестициям</div>
+                    </li>
+                </ul>
+
+                <h2>💡 ПРЕИМУЩЕСТВА</h2>
+                <h3 style="color: #1e3c72; margin: 20px 0 15px 0;">🎯 Для инвесторов:</h3>
+                <ul class="advantages-list">
+                    <li>• <strong>Порог входа</strong> — от $1,000 (вместо $1M)</li>
+                    <li>• <strong>Высокая ликвидность</strong> благодаря блокчейну</li>
+                    <li>• <strong>Глобальная диверсификация</strong></li>
+                </ul>
+
+                <h3 style="color: #1e3c72; margin: 20px 0 15px 0;">💼 Типы клиентов:</h3>
+                <table class="client-types-table">
+                    <thead>
+                        <tr>
+                            <th>Тип</th>
+                            <th>Порог инвестиций</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>👤 Частные инвесторы</td>
+                            <td>от $1,000</td>
+                        </tr>
+                        <tr>
+                            <td>🏛️ Институционалы</td>
+                            <td>от $100,000</td>
+                        </tr>
+                        <tr>
+                            <td>👨‍👩‍👧‍👦 Семейные офисы</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>₿ Криптоинвесторы</td>
+                            <td>Соответствие регуляциям</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>👨‍💼 КОМАНДА</h2>
+                <div class="team-section">
+                    <h3 style="color: #1e3c72; margin-bottom: 20px;">🎖️ Руководитель:</h3>
+                    <div class="team-leader">
+                        <h3>Роман Чечушков, MBA, FRM</h3>
+                        <div class="title">CEO & Founder</div>
+                        <div class="experience">
+                            📊 20+ лет на рынках капитала<br>
+                            🏢 Экс-Ренессанс, структурированные продукты, семейные офисы
+                        </div>
+                        <a href="https://www.linkedin.com/in/roman-chechushkov/" target="_blank" style="color: #0077b5; text-decoration: none;">🔗 LinkedIn профиль</a>
+                    </div>
+
+                    <h3 style="color: #1e3c72; margin: 20px 0 15px 0;">⭐ Принципы работы:</h3>
+                    <div class="principles">
+                        <div class="principle">✅ Прозрачность</div>
+                        <div class="principle">✅ Клиентоцентричность</div>
+                        <div class="principle">✅ Технологичность</div>
+                        <div class="principle">✅ Соблюдение регуляций</div>
+                    </div>
+                </div>
+
+                <div class="long-term-goal">
+                    <h3 style="color: #8b4513; margin-bottom: 15px;">🎯 ДОЛГОСРОЧНАЯ ЦЕЛЬ</h3>
+                    <blockquote>
+                        Крупнейшая платформа токенизированной недвижимости MENA.<br>
+                        Экосистема B2B для управляющих компаний.
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
